@@ -11,6 +11,29 @@ Then stop the container:
 For a quick documentation see:
 https://github.com/kylemanna/docker-openvpn/blob/master/docs/docker-compose.md
 
+## Creating Configuration
+
+Best is always to create a new config from scratch. As root remove all templates and backups in the bind volume:
+
+    # rm openvpn-data/conf/openvpn.conf
+    # rm openvpn-data/conf/ovpn_env.sh
+
+Create server config anew as non root:
+
+    $ docker compose run --rm openvpn ovpn_genconfig -d -N -u udp://<server-ip> -p "route <subnet> <mask>" -n 1.1.1.1 -n 8.8.8.8
+
+The -p indicates teh client get a push with a specific split tunnel route for an IP or a subnet.
+
+F.I:
+
+    -p "route 142.250.74.0 255.255.255.0"
+
+or
+
+    -p "route 142.250.74.3 255.255.255.255"
+
+for a specific IP.
+
 ## Deployment
 
 No deployment available.
