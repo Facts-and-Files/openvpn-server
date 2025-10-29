@@ -2,13 +2,13 @@ services:
   openvpn:
     image: kylemanna/openvpn
     container_name: openvpn-server
+    restart: unless-stopped
     cap_add:
       - NET_ADMIN
     ports:
       - "1194:1194/udp"
     volumes:
       - ./openvpn-data/conf:/etc/openvpn
-    restart: always
     healthcheck:
       test: ["CMD", "pgrep", "openvpn"]
       interval: 120s
