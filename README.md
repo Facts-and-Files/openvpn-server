@@ -36,11 +36,11 @@ for a specific IP.
 
 ## Adding a client
 
-    $ docker compose run -rm openvpn easyrsa build-client-full CLIENTNAME
+    $ docker compose run --rm openvpn easyrsa build-client-full CLIENTNAME
 
 Get the client configuration and certificates:
 
-    $ docker compose run -rm openvpn ovpn_getclient CLIENTNAME > CLIENTNAME.ovpn
+    $ docker compose run --rm openvpn ovpn_getclient CLIENTNAME > CLIENTNAME.ovpn
 
 ## Deployment
 
